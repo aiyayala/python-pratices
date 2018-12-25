@@ -1,0 +1,26 @@
+# diameter = [6,8,10,14,18]
+# price = [7,9,13,17.5,18]
+# predit the value of diameters :D
+
+
+import altair as alt
+diameter = [6,8,10,14,18]
+price = [7,9,13,17.5,18]
+
+# calculate the valuse for all diameters of the pizza , using slope of 0.7 and intercept of 5
+def prices (dia):
+    return 0.7*diam + 5
+p_line = []
+for diam in diameter:
+    p_line.append(prices(diam))
+print (p_line)
+
+
+#compare the original data and the new data
+diameter = [6,8,10,14,18,6,8,10,14,18]
+c_price = price + p_line
+data = alt.Data(X =diameter, Y= c_price,T = ['val','val','val','val','val','aprox','aprox','aprox','aprox','aprox'])
+chart = alt.Chart(data)
+mark = chart.mark_point()
+enc = mark.encode(x='X',y='Y',color = 'T:N')
+enc.display()
