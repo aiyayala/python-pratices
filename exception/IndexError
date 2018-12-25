@@ -1,0 +1,12 @@
+#assign the 5th letter of each word in food to the new list fifth
+#catch the index errors
+
+food = ["chocolate", "chicken", "corn", "sandwich", "soup", "potatoes", "beef", "lox", "lemonade"]
+fifth = []
+
+for x in food:
+    try:
+        fifth.append(x[4])
+    except IndexError:
+        pass
+print(fifth)    
