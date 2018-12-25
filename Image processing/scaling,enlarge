@@ -1,0 +1,23 @@
+import image
+img = image.Image("golden_gate.png")
+h = img.getHeight()
+w = img.getWidth()
+r = 2 #ratio
+win = image.ImageWin(r*w,r*h)
+img2 = image.EmptyImage(r*w,r*h)
+#this for loop get 1X image px, (col, row)
+for col in range(w):
+    for row in range(h): 
+        p = img.getPixel(col, row) 
+        ###for loop counts from 0 ncol = r * (col - 1) + 1           
+        ncol = r * col       
+        nrow = r * row                
+        #start to fill it  fcol = ncol + 0,1,2,...ratio - 1  
+        for i in range(r):           
+            for j in range(r):  
+                fcol = ncol + i    # fcol = r*col + i
+                frow = nrow + j    # frow = r*row + j
+                img2.setPixel(fcol, frow, p)   
+                
+img2.draw(win)
+win.exitonclick()
