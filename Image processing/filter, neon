@@ -1,0 +1,19 @@
+import image
+
+img = image.Image("golden_gate.png")
+win = image.ImageWin(img.getWidth(), img.getHeight())
+img.draw(win)
+img.setDelay(0)   # setDelay(0) turns off animation
+
+for row in range(img.getHeight()):
+    for col in range(img.getWidth()):
+        p = img.getPixel(col, row)
+        newred = p.getRed()
+        newgreen = 0
+        newblue = p.getBlue()*2
+        newpixel = image.Pixel(newred, newgreen, newblue)
+        img.setPixel(col, row, newpixel)
+        # your code here
+
+img.draw(win)
+win.exitonclick()
