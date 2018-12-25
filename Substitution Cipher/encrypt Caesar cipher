@@ -1,0 +1,11 @@
+plaintext = 'thequickbrownfoxjumpsoverthelazydog'
+letter = 'abcdefghijklmnopqrstuvwxyz'
+ciphertext = ''
+for w in plaintext:
+    for v in letter:
+        if w == v:
+            newposition = letter.index(v)+13
+            if newposition >=26:
+                newposition = newposition -26
+            ciphertext = ciphertext + letter[newposition] 
+print(ciphertext)
