@@ -1,0 +1,9 @@
+alphabet = 'abcdefghijklmnopqrstuvwxyz '
+key =      'mwgp bdzxrylacsokjfhtnueivq'
+plaintext = 'of shoes and ships and sealing wax of cabbages and kings'
+ciphertext  = ''
+for w in plaintext:
+    for a in alphabet:
+        if w == a:
+            ciphertext = ciphertext  + key[alphabet.index(a)]            
+print(ciphertext)
