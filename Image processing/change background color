@@ -1,0 +1,24 @@
+import image
+img = image.Image("http://hiperc.buffalostate.edu/sofia.jpg")
+win = image.ImageWin(300,180)
+img.draw(win)
+img.setDelay(0)   # setDelay(0) turns off animation
+
+for row in range(img.getHeight()):
+    for col in range(img.getWidth()):
+        p = img.getPixel(col, row)
+        if (p.getGreen()+ p.getBlue()+ p.getRed())/3<100:
+            newred =0
+            newgreen =  0
+            newblue = 0
+        else: 
+            newred =0
+            newgreen =0
+            newblue = 255
+        
+            
+        newpixel = image.Pixel(newred,newgreen,newblue)
+        img.setPixel(col,row,newpixel)
+              
+img.draw(win)
+win.exitonclick()
