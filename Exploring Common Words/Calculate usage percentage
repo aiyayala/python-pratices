@@ -1,0 +1,30 @@
+
+# read the file and store the contents into five lists
+f = open("words5000.csv","r")
+lines = f.readlines()
+f.close()
+lines.pop(0)
+rank=[]
+word=[]
+part_of_speech = []
+frenquency= []
+dispersion =[]
+for aline in lines:
+    lst = aline.split(",")
+    rank.append(lst[0])
+    word.append(lst[1])
+    part_of_speech.append(lst[2])
+    frenquency.append(lst[3])
+    dispersion.append(lst[4])
+ 
+#calculate the total usage percentage for the top 10words and bottom 10 
+top_10 = 0
+bottom_10 = 0
+total_count = 0
+for w in range(len(frenquency)):
+    total_count = total_count + int(frenquency[w])
+    if w < 10:
+        print(word[w])
+        top_10 = int(frenquency[w])/total_count + top_10 
+    if w >(len(frenquency)-11):
+        bottom_10 = int(frenquency[w])/total_count + bottom_10
