@@ -1,0 +1,17 @@
+import image
+img = image.Image("golden_gate.png")
+c = img.getWidth()
+r = img.getHeight()
+sratio = 2 #ratio
+nc = c//sratio
+nr = r//sratio
+win = image.ImageWin(nc,nr)
+img2 = image.EmptyImage(nc,nr)
+
+for col in range(nc):
+    for row in range(nr): 
+        p = img.getPixel(col*sratio, row*sratio) 
+        img2.setPixel(col, row, p)   
+                
+img2.draw(win)
+win.exitonclick()
