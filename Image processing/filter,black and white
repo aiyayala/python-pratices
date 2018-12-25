@@ -1,0 +1,21 @@
+import image
+img = image.Image("golden_gate.png")
+win = image.ImageWin(img.getWidth(), img.getHeight())
+img.draw(win)
+img.setDelay(0)   # setDelay(0) turns off animation
+threshold = 150
+for row in range(img.getHeight()):
+    for col in range(img.getWidth()):
+        p = img.getPixel(col, row)
+        gray_value  = (p.getRed() + p.getGreen()+ p.getBlue())/4
+        if gray_value < threshold:
+            newpixel = image.Pixel(0,0,0)
+            img.setPixel(col, row, newpixel)
+        else:
+            newpixel = image.Pixel(255,255,255)
+            img.setPixel(col, row, newpixel)
+            
+        # your code here
+
+img.draw(win)
+win.exitonclick()
