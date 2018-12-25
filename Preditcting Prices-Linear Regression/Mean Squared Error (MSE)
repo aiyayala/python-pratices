@@ -1,0 +1,51 @@
+#1 .Pick a random value for m and b
+#2 .Compute the MSE for all our known points
+#3 .Repeat the following steps 1000 times 1. Make m slightly bigger and recompute
+#the MSE does that make it smaller? If so then use this new value for m. 
+#If it doesn’t make MSE smaller than make m slightly smaller and see if that helps. 
+#1. Make b slightly bigger and recompute the MSE does that make it smaller? If so then
+#use this new value for b and go back to step 3a. If not then try a slightly smaller b
+#and see if that makes the MSE smaller if so keep this value for b and go back to step 3a.
+#4 .After repeating the above enough times we will be very close to the best possible values
+#for m and b. We can now use these values to make predictions for other pizzas where we know the diameter but don’t know the price.
+
+stepsize = 0.01 
+iteration = 1000
+startm = 7
+startb = 8
+diameters = [6,8,10,14,18]
+known = [7,9,13,17.5,18]
+
+def compute_y(x,m,b):
+    return m*x  + b
+#m is the slope 
+
+def compute_all_y(list_of_x,m,b):
+    all_y =[]
+    for x in list_of_x:
+        all_y.append(compute_y(x,m,b))
+    return all_y
+
+def compute_mse(list_of_known, list_of_predictions):
+    total = 0
+    for ix,y in enumerate(list_of_predictions):
+        error = list_of_known[ix] - y
+        total += error * error
+    return total / len(list_of_known)    
+
+
+for _ in range(iteration):
+    if ((known,compute_all_y(diameters,startm,startb)) >  (known,compute_all_y(diameters,startm+stepsize,startb)) ):
+        startm = startm + stepsize
+    else:    
+        startm = startm - stepsize
+        
+for _ in range(iteration):        
+    if((known,compute_all_y(diameters,startm,startb)) >  (known,compute_all_y(diameters,startm,startb + stepsize)) ):
+        startb = startb + stepsize
+    else:
+        startb = startb - stepsize
+        
+print(startm, startb)        
+pred = compute_all_y(diameters,startm,startb)
+print("Predition:", pred)  
