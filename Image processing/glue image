@@ -1,0 +1,30 @@
+import image
+img = image.Image("golden_gate.png")
+h = img.getHeight()
+w = img.getWidth()
+win = image.ImageWin(w,h)
+# size of the crop image 
+h2 = 120
+w2 = 40
+#crop image: top and left margin 
+top =  10   #top 
+left = 50    #left
+#crop image location : margin start point
+nh = 40
+nw = 100
+
+for row in range(h):
+    for col in range(w):
+        p = img.getPixel(col, row)            
+        img.setPixel(col, row, p)
+for row in range(h2):
+    for col in range(w2):
+        ncol = col + left
+        nrow = row + top
+        q = img.getPixel(ncol,nrow)  
+        a = nh + row
+        b = nw + col
+        img.setPixel(b,a,q)        
+img.draw(win)
+win.exitonclick()
+
