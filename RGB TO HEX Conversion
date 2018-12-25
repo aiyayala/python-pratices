@@ -1,0 +1,22 @@
+def rgb(r, g, b):
+    rgb = [r,g,b]
+    letters = {10:'A',11:'B',12:'C',13:'D',14:'E',15:'F',16:'G'}
+    hexi =""
+    for w in rgb:
+        if w < 0:
+            w = 0
+        elif w >255:
+            w = 255
+    
+        v1 = w //16
+        v2 =  w % 16
+        if v1<10:
+            hexi = hexi + str(v1)
+        else:
+            hexi = hexi + letters[v1]
+        if v2<10:
+            hexi = hexi + str(v2)
+        else:
+            hexi = hexi + letters[v2]    
+            
+    return(hexi)
